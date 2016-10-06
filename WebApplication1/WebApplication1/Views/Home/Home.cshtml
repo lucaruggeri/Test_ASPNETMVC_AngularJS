@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "AngularJS - Hello World";
+}
+
+<!DOCTYPE html>
+<html ng-app="cardsApp" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link href="~/Views/Styles/myStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/MyApp/Cards.js"></script>
+</head>
+<body>
+
+    This is a test:
+    <div ng-controller="CardsListController as cardsList">
+        <h2>{{cardsList.remaining()}} of {{cardsList.cards.length}} remaining</h2>
+        <ul class="unstyled">
+            <li ng-repeat="cards in cardsList.cards">
+                <div class="checkbox">
+                    <input type="checkbox" ng-model="cards.done">
+                    <span class="done-{{cards.done}}">{{cards.text}}</span>
+                </div>
+            </li>
+        </ul>
+        <form ng-submit="cardsList.addCard()">
+            <input type="text" ng-model="cardsList.newCardText" size="30"
+                   placeholder="add new cards here">
+            <input class="btn-primary" type="submit" value="add">
+        </form>
+        <br /><br />
+        (<a href="" ng-click="cardsList.archive()">store selected items in archive</a>)
+    </div>
+
+</body>
+</html>
